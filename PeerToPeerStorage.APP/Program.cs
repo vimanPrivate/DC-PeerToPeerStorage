@@ -68,20 +68,18 @@ namespace PeerToPeerStorage.APP
 
             Console.WriteLine("Assigning Roles to the Nodes....");
             initNode.AssigningRoles();
-            //initNode.DisplayNodeInfo();
-            //initNode.DisconnectNode(1);
-            //initNode.AddNewNode(new Node());
-            //initNode.AddNewNode(new Node());
             Console.WriteLine("Adding values to nodes ........");
-
-            Console.WriteLine("\n\n\n*************************************************************************");
-            Console.WriteLine("\nInitial Stage complete. \nPlease follow below instruction to see the DEMO \n");
-            Console.WriteLine("*************************************************************************");
 
             foreach (string sentence in textList)
             {
                 initNode.StoreTextValuesRequest(sentence);
             }
+
+
+            Console.WriteLine("\n\n\n*************************************************************************");
+            Console.WriteLine("\nInitial Stage complete. \nPlease follow below instruction to see the DEMO \n");
+            Console.WriteLine("*************************************************************************");
+
 
             bool isContinue = false;
             do
@@ -94,13 +92,6 @@ namespace PeerToPeerStorage.APP
                 isContinue = continueCommand == 1 ? true : false;
             }
             while (isContinue);
-
-            //initNode.DisconnectNode(2);
-            //initNode.DisconnectNode(4);
-            //initNode.DisconnectNode(6);
-
-            //var val1 = initNode.GetStoredTextValueRequest("The Mapogo");
-            //var val2 = initNode.GetStoredTextValueRequest(" The coali");
         }
 
         public static int DisplayMenu()
