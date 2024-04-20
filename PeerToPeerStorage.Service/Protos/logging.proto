@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "GRPC_Server";
+
+package logging;
+
+service Logging {
+
+  rpc StartLogging (LoggingRequest) returns (LoggingReply);
+  rpc StartErrorLogging (LoggingRequest) returns (LoggingReply);
+}
+
+message LoggingRequest {
+  string message = 1;
+}
+
+
+message LoggingReply {
+  string message = 1;
+}
