@@ -12,12 +12,6 @@ namespace PeerToPeerStorage.APP
     {
         static void Main(string[] args)
         {
-
-            //LoggingService req = new LoggingService();
-            //req.InfoLog("1");
-            //req.InfoLog("2");
-
-
             /*
              * Initial Process goes here
              * Letting user select how many nodes does user wants ( for Demo only )

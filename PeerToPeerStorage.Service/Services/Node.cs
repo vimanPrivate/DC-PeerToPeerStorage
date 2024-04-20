@@ -19,11 +19,15 @@ namespace PeerToPeerStorage.Service.Services
         public NodeRoleEnum NodeRole { get; private set; }
         public bool IsLeader { get; set; }
 
+        LoggingService logs;
+
+
         public Node()
         {
             ConnectedNodes = new List<Node>();
             _nodeTable = new List<NodeTable>();
             _valueTable = new List<ValueTable>();
+            logs = new LoggingService();
         }
 
         public Node(int nodeId)
@@ -32,10 +36,13 @@ namespace PeerToPeerStorage.Service.Services
             ConnectedNodes = new List<Node>();
             _nodeTable = new List<NodeTable>();
             _valueTable = new List<ValueTable>();
+            logs = new LoggingService();
         }
 
         public void SetupNodeConnection(Node node)
         {
+            logs.InfoLog("SetupNodeConnection()");
+
             if (ConnectedNodes.Count == 0)
             {
                 ConnectedNodes.Add(node);
@@ -56,7 +63,9 @@ namespace PeerToPeerStorage.Service.Services
 
         public void DisconnectNode(int nodeId = -99)
         {
-            if(nodeId == -99)
+            logs.InfoLog("DisconnectNode");
+
+            if (nodeId == -99)
             {
                 Console.WriteLine("\n\t Please enter node Id which you want to remove : \n\t Or Press -99 to go back");
                 int readVal = int.Parse(Console.ReadLine());
@@ -140,6 +149,8 @@ namespace PeerToPeerStorage.Service.Services
 
         public void ElectLeader()
         {
+            logs.InfoLog("ElectLeader()");
+
             Console.WriteLine("Electing a leader .... ");
             int leaderNodeId = ConnectedNodes.Select(node => node.NodeId).Max();
 
@@ -171,6 +182,8 @@ namespace PeerToPeerStorage.Service.Services
 
         public void AssigningRoles()
         {
+            logs.InfoLog("AssigningRoles()");
+
             if (IsLeader)
             {
                 if (NodeId % 2 == 0)
@@ -277,6 +290,7 @@ namespace PeerToPeerStorage.Service.Services
 
         private Node NavigateToLeaderNode()
         {
+            logs.InfoLog("NavigateToLeaderNode()");
             if (IsLeaderExists())
             {
                 if (this.IsLeader)
@@ -312,6 +326,8 @@ namespace PeerToPeerStorage.Service.Services
 
         public void StoreTextValuesInReceiver(string sentence)
         {
+            logs.InfoLog("StoreTextValuesInReceiver()");
+
             var hasherService = new HasingService(NodeId, ConnectedNodes, _valueTable, NodeRole);
             hasherService.StoreTextValuesInReceiver(sentence);
         }
