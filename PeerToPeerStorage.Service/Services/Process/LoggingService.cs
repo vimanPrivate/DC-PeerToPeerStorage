@@ -25,7 +25,15 @@ namespace PeerToPeerStorage.Service.Services.Process
                 Message = message + " --- > "+DateTime.Now,
             };
 
-            var reply = client.StartLogging(input);
+            try
+            {
+                var reply = client.StartLogging(input);
+            }
+            catch (Exception ex) 
+            {
+                //Console.WriteLine("********* gRPC server is not running. User actions will not be logged! *********");
+                return;
+            }
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using Grpc.Net.Client;
+﻿using Google.Protobuf.WellKnownTypes;
+using Grpc.Net.Client;
 using GRPC_Server;
 using PeerToPeerStorage.Service.Services;
 using PeerToPeerStorage.Service.Services.Process;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace PeerToPeerStorage.APP
 {
@@ -22,9 +24,15 @@ namespace PeerToPeerStorage.APP
              * storing values to the nodes
              */
 
-
             Console.Write("Enter number of Receiver nodes : ");
-            int noOfNodes = int.Parse(Console.ReadLine());
+            int noOfNodes;
+            bool isInteger = int.TryParse(Console.ReadLine(), out noOfNodes);
+
+            while (!isInteger)
+            {
+                Console.Write("Wrong Value!!! Please enter a Number: ");
+                isInteger = int.TryParse(Console.ReadLine(), out noOfNodes);
+            }
 
             string text = "The Mapogo Lions, also known as the Mapogo Coalition or the Mapogo pride, were a legendary coalition of" +
                             "male lions in the Sabi Sand Game Reserve in South Africa. The coalition gained fame for their dominance and" +
@@ -99,7 +107,16 @@ namespace PeerToPeerStorage.APP
             Console.WriteLine("\tPress -99\t: Exit");
 
             Console.Write("\n\tEnter .. : ");
-            int command = int.Parse(Console.ReadLine());
+            int command;
+            
+            bool isInteger = int.TryParse(Console.ReadLine(), out command);
+
+            while (!isInteger)
+            {
+                Console.Write("Wrong Value!!! Please enter a Number: ");
+                isInteger = int.TryParse(Console.ReadLine(), out command);
+            }
+
             Console.WriteLine("-----------------------------------------------\n");
             return command;
         }
